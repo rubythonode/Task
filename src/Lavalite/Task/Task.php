@@ -15,10 +15,9 @@ class Task
      *
      * @return Response
      */
-    public function display()
+    public function display($view)
     {
-                return view('task::admin.task.task');
-
+        return view('task::admin.task.'.$view);
     }
 
 
