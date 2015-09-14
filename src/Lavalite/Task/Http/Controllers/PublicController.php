@@ -13,7 +13,7 @@ class PublicController extends CMSPublicController
      *
      * @return type
      */
-    public function __construct(\Lavalite\Task\Interfaces\TaskRepositiryInterface $task)
+    public function __construct(\Lavalite\Task\Interfaces\TaskRepositoryInterface $task)
     {
         $this->model = $task;
         parent::__construct();

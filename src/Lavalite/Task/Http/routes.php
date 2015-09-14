@@ -5,5 +5,5 @@ Route::group(array('prefix' =>'admin'), function ()
     Route::resource('/task/task', 'Lavalite\Task\Http\Controllers\TaskAdminController');
 });
 
-Route::get('task', 'Lavalite\Task\Controllers\PublicController@list');
-Route::get('task/{slug?}', 'Lavalite\Task\Controllers\PublicController@details');
+Route::get('task', 'Lavalite\Task\Http\Controllers\PublicController@list');
+Route::get('task/{slug?}', 'Lavalite\Task\Http\Controllers\PublicController@details');
