@@ -2,6 +2,7 @@
 
 namespace Lavalite\Task;
 
+use DB;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,21 @@ class TaskTableSeeder extends Seeder
             // Uncomment  and edit this section for entering value to task table.
             /*
             array(
-                'name'      => 'Some name',
+               "id"        => "Id",
+               "parent_id"        => "Parent id",
+               "user_id"        => "User id",
+               "start"        => "Start",
+               "end"        => "End",
+               "category"        => "Category",
+               "task"        => "Task",
+               "time_required"        => "Time required",
+               "time_taken"        => "Time taken",
+               "proprity"        => "Proprity",
+               "status"        => "Status",
+               "created_by"        => "Created by",
+               "created_at"        => "Created at",
+               "updated_at"        => "Updated at",
+               "deleted_at"        => "Deleted at",
             ),
             */
 
