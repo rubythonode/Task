@@ -2,24 +2,22 @@
 
 namespace Lavalite\Task\Http\Controllers;
 
-use Former;
-use Response;
 use App\Http\Controllers\AdminController as AdminController;
-
+use Former;
 use Lavalite\Task\Http\Requests\TaskRequest;
 use Lavalite\Task\Interfaces\TaskRepositoryInterface;
+use Response;
 
 /**
  *
- * @package Tasks
  */
-
 class TaskAdminController extends AdminController
 {
-
     /**
-     * Initialize task controller
+     * Initialize task controller.
+     *
      * @param type TaskRepositoryInterface $task
+     *
      * @return type
      */
     public function __construct(TaskRepositoryInterface $task)
@@ -43,7 +41,7 @@ class TaskAdminController extends AdminController
     /**
      * Return list of task as json.
      *
-     * @param  Request  $request
+     * @param Request $request
      *
      * @return Response
      */
@@ -54,14 +52,14 @@ class TaskAdminController extends AdminController
             $array[$key] = array_only($row, config('package.task.task.listfields'));
         }
 
-        return array('data' => $array);
+        return ['data' => $array];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int     $id
      *
      * @return Response
      */
@@ -77,7 +75,8 @@ class TaskAdminController extends AdminController
     /**
      * Show the form for creating a new resource.
      *
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function create(TaskRequest $request)
@@ -91,7 +90,8 @@ class TaskAdminController extends AdminController
     /**
      * Display the specified resource.
      *
-     * @param  Request  $request
+     * @param Request $request
+     *
      * @return Response
      */
     public function store(TaskRequest $request)
@@ -106,8 +106,9 @@ class TaskAdminController extends AdminController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int     $id
+     *
      * @return Response
      */
     public function edit(TaskRequest $request, $id)
@@ -122,8 +123,9 @@ class TaskAdminController extends AdminController
     /**
      * Update the specified resource.
      *
-     * @param  Request  $request
-     * @param  int  $id
+     * @param Request $request
+     * @param int     $id
+     *
      * @return Response
      */
     public function update(TaskRequest $request, $id)
@@ -138,13 +140,15 @@ class TaskAdminController extends AdminController
     /**
      * Remove the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return Response
      */
     public function destroy(TaskRequest $request, $id)
     {
         try {
             $this->model->delete($id);
+
             return Response::json(['message' => 'Task deleted sucessfully'.$id, 'type' => 'success', 'title' => 'Success'], 201);
         } catch (Exception $e) {
             return Response::json(['message' => $e->getMessage(), 'type' => 'error', 'title' => 'Error'], 400);

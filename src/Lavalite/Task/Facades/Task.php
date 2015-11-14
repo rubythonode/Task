@@ -1,4 +1,6 @@
-<?php namespace Lavalite\Task\Facades;
+<?php
+
+namespace Lavalite\Task\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
@@ -9,6 +11,8 @@ class Task extends Facade
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'task'; }
-
+    protected static function getFacadeAccessor()
+    {
+        return 'task';
+    }
 }

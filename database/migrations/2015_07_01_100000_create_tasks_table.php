@@ -1,22 +1,21 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 
-class CreateTasksTable extends Migration {
-
-        /**
-         * Run the migrations.
-         *
-         * @return void
-         */
+class CreateTasksTable extends Migration
+{
+    /**
+          * Run the migrations.
+          *
+          * @return void
+          */
          public function up()
          {
 
-            /**
+            /*
              * Table: tasks
              */
-            Schema::create('tasks', function($table) {
+            Schema::create('tasks', function ($table) {
                 $table->increments('id')->unsigned();
                 $table->string('parent_id')->nullable();
                 $table->string('user_id')->nullable();
@@ -33,16 +32,15 @@ class CreateTasksTable extends Migration {
                 $table->softDeletes();
                 $table->nullableTimestamps();
             });
-        }
-
-        /**
-         * Reverse the migrations.
-         *
-         * @return void
-         */
-         public function down()
-         {
-                Schema::drop('tasks');
          }
 
+         /**
+          * Reverse the migrations.
+          *
+          * @return void
+          */
+         public function down()
+         {
+             Schema::drop('tasks');
+         }
 }
