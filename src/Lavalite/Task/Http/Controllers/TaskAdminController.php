@@ -51,7 +51,7 @@ class TaskAdminController extends AdminController
     {
         $array = $this->model->json();
         foreach ($array as $key => $row) {
-            $array[$key] = array_only($row, config('task.task.listfields'));
+            $array[$key] = array_only($row, config('package.task.task.listfields'));
         }
 
         return array('data' => $array);

@@ -63,7 +63,7 @@ class TaskServiceProvider extends ServiceProvider {
      */
     private function publishResources()
     {
-        $this->publishes([__DIR__.'/../../../../config/config.php' => config_path('task.php')], 'config');
+        $this->publishes([__DIR__.'/../../../../config/config.php' => config_path('package/task.php')], 'config');
 
         // Merge task module to task package config
         $this->mergeConfigFrom(

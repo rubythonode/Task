@@ -32,10 +32,10 @@ class Task extends Model
      */
     public function initialize()
     {
-        $this->fillable             = config('task.task.fillable');
-        $this->uploads              = config('task.task.uploadable');
-        $this->uploadRootFolder     = config('task.task.upload_root_folder');
-        $this->table                = config('task.task.table');
+        $this->fillable             = config('package.task.task.fillable');
+        $this->uploads              = config('package.task.task.uploadable');
+        $this->uploadRootFolder     = config('package.task.task.upload_root_folder');
+        $this->table                = config('package.task.task.table');
     }
 
 }
