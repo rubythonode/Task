@@ -2,10 +2,9 @@
 
 namespace Lavalite\Task\Models;
 
-use Lavalite\Filer\FilerTrait;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Lavalite\Filer\FilerTrait;
 
 class Task extends Model
 {
@@ -15,7 +14,7 @@ class Task extends Model
     protected $dates = ['deleted_at'];
 
     /**
-     * Initialiaze page modal
+     * Initialiaze page modal.
      *
      * @param $name
      */
@@ -32,10 +31,9 @@ class Task extends Model
      */
     public function initialize()
     {
-        $this->fillable             = config('package.task.task.fillable');
-        $this->uploads              = config('package.task.task.uploadable');
-        $this->uploadRootFolder     = config('package.task.task.upload_root_folder');
-        $this->table                = config('package.task.task.table');
+        $this->fillable = config('package.task.task.fillable');
+        $this->uploads = config('package.task.task.uploadable');
+        $this->uploadRootFolder = config('package.task.task.upload_root_folder');
+        $this->table = config('package.task.task.table');
     }
-
 }

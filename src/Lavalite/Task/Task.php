@@ -1,17 +1,18 @@
-<?php namespace Lavalite\Task;
+<?php
+
+namespace Lavalite\Task;
 
 class Task
 {
-
     protected $task;
 
     public function __construct(\Lavalite\Task\Interfaces\TaskRepositoryInterface $task)
     {
-        $this->task     = $task;
+        $this->task = $task;
     }
 
     /**
-     * Display tasks of the user
+     * Display tasks of the user.
      *
      * @return Response
      */
@@ -19,6 +20,4 @@ class Task
     {
         return view('task::admin.task.'.$view);
     }
-
-
 }

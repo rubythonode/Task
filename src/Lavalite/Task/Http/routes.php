@@ -1,6 +1,6 @@
 <?php
-Route::group(array('prefix' =>'admin'), function ()
-{
+
+Route::group(['prefix' => 'admin'], function () {
     Route::get('/task/task/list', 'Lavalite\Task\Http\Controllers\TaskAdminController@lists');
     Route::resource('/task/task', 'Lavalite\Task\Http\Controllers\TaskAdminController');
 });

@@ -6,9 +6,9 @@ use App\Http\Controllers\PublicController as CMSPublicController;
 
 class PublicController extends CMSPublicController
 {
-
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param type \Lavalite\Task\Interfaces\TaskRepositoryInterface $task
      *
      * @return type
@@ -20,7 +20,7 @@ class PublicController extends CMSPublicController
     }
 
     /**
-     * Show task's list
+     * Show task's list.
      *
      * @param string $slug
      *
@@ -34,7 +34,8 @@ class PublicController extends CMSPublicController
     }
 
     /**
-     * Show task
+     * Show task.
+     *
      * @param string $slug
      *
      * @return response
