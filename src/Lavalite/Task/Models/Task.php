@@ -2,38 +2,22 @@
 
 namespace Lavalite\Task\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Lavalite\Filer\FilerTrait;
+use Litepie\Database\Traits\Slugger;
+use Litepie\Database\Model;
+use Litepie\Filer\Traits\Filer;
+use Litepie\Hashids\Traits\Hashids;
+use Litepie\Trans\Traits\Trans;
+use Litepie\Revision\Traits\Revision;
 
 class Task extends Model
 {
-    use FilerTrait;
-    use SoftDeletes;
-
-    protected $dates = ['deleted_at'];
+    use Filer, SoftDeletes, Hashids, Slugger, Trans, Revision;
 
     /**
-     * Initialiaze page modal.
+     * Configuartion for the model.
      *
-     * @param $name
+     * @var array
      */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->initialize();
-    }
-
-    /**
-     * Initialize the modal variables.
-     *
-     * @return void
-     */
-    public function initialize()
-    {
-        $this->fillable = config('package.task.task.fillable');
-        $this->uploads = config('package.task.task.uploadable');
-        $this->uploadRootFolder = config('package.task.task.upload_root_folder');
-        $this->table = config('package.task.task.table');
-    }
+     protected $config = 'package.task.task';
 }

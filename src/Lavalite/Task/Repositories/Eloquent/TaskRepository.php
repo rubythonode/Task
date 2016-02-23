@@ -3,6 +3,7 @@
 namespace Lavalite\Task\Repositories\Eloquent;
 
 use Lavalite\Task\Interfaces\TaskRepositoryInterface;
+use Litepie\Database\Eloquent\BaseRepository;
 
 class TaskRepository extends BaseRepository implements TaskRepositoryInterface
 {

@@ -12,7 +12,7 @@
         <ul class="nav nav-tabs primary">
             <li class="active"><a href="#details" data-toggle="tab">Task</a></li>
         </ul>
-        {!!Former::vertical_open()
+        {!!Form::vertical_open()
         ->id('edit-task')
         ->method('PUT')
         ->enctype('multipart/form-data')
@@ -22,7 +22,7 @@
                 @include('task::admin.task.partial.entry')
             </div>
         </div>
-        {!!Former::close()!!}
+        {!!Form::close()!!}
     </div>
 </div>
 <div class="box-footer" >

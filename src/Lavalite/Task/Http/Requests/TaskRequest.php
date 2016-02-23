@@ -43,14 +43,13 @@ class TaskRequest extends Request
         // validation rule for create request.
         if ($request->isMethod('POST')) {
             return [
-                'name' => 'required',
+                'task' => 'required',
             ];
         }
 
         // Validation rule for update request.
         if ($request->isMethod('PUT') || $request->isMethod('PATCH')) {
             return [
-                'name' => 'required',
             ];
         }
 

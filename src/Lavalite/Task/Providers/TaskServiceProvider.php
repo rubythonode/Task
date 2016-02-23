@@ -3,6 +3,7 @@
 namespace Lavalite\Task\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Lavalite\Task\Models\Task;
 
 class TaskServiceProvider extends ServiceProvider
 {
@@ -15,18 +16,14 @@ class TaskServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap the application events.
-     *
-     * @return void
      */
     public function boot()
-    {
+    {        
         $this->loadViewsFrom(__DIR__.'/../../../../resources/views', 'task');
+
         $this->loadTranslationsFrom(__DIR__.'/../../../../resources/lang', 'task');
 
         $this->publishResources();
-        $this->publishMigrations();
-
-        include __DIR__.'/../Http/routes.php';
     }
 
     /**
@@ -41,9 +38,13 @@ class TaskServiceProvider extends ServiceProvider
         });
 
         $this->app->bind(
-            'Lavalite\\Task\\Interfaces\\TaskRepositoryInterface',
-            'Lavalite\\Task\\Repositories\\Eloquent\\TaskRepository'
+            \Lavalite\Task\Interfaces\TaskRepositoryInterface::class,
+            \Lavalite\Task\Repositories\Eloquent\TaskRepository::class
         );
+
+        $this->app->register(\Lavalite\Task\Providers\AuthServiceProvider::class);
+        $this->app->register(\Lavalite\Task\Providers\EventServiceProvider::class);
+        $this->app->register(\Lavalite\Task\Providers\RouteServiceProvider::class);
     }
 
     /**

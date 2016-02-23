@@ -3,10 +3,10 @@
 namespace Lavalite\Task\Http\Controllers;
 
 use App\Http\Controllers\AdminController as AdminController;
-use Former;
+use Form;
 use Lavalite\Task\Http\Requests\TaskRequest;
 use Lavalite\Task\Interfaces\TaskRepositoryInterface;
-use Response;
+use Lavalite\Task\Models\Task;
 
 /**
  *
@@ -33,26 +33,17 @@ class TaskAdminController extends AdminController
      */
     public function index(TaskRequest $request)
     {
-        $this->theme->prependTitle(trans('task::task.names').' :: ');
+        $tasks  = $this->model->setPresenter('\\Lavalite\\Task\\Repositories\\Presenter\\TaskListPresenter')->paginate(NULL, ['*']);
+        $this   ->theme->prependTitle(trans('task::task.names').' :: ');
+        $view   = $this->theme->of('task::admin.task.index',compact('tasks'))->render();
 
-        return $this->theme->of('task::admin.task.index')->render();
-    }
-
-    /**
-     * Return list of task as json.
-     *
-     * @param Request $request
-     *
-     * @return Response
-     */
-    public function lists(TaskRequest $request)
-    {
-        $array = $this->model->json();
-        foreach ($array as $key => $row) {
-            $array[$key] = array_only($row, config('package.task.task.listfields'));
-        }
-
-        return ['data' => $array];
+        $this->responseCode = 200;
+        $this->responseMessage = trans('messages.success.loaded', ['Module' => 'Task']);
+        $this->responseData = $tasks['data'];
+        $this->responseMeta = $tasks['meta'];
+        $this->responseView = $view;
+        $this->responseRedirect = '';
+        return $this->respond($request);
     }
 
     /**
@@ -67,7 +58,7 @@ class TaskAdminController extends AdminController
     {
         $task = $this->model->findOrNew($id);
 
-        Former::populate($task);
+        Form::populate($task);
 
         return view('task::admin.task.show', compact('task'));
     }
@@ -81,10 +72,15 @@ class TaskAdminController extends AdminController
      */
     public function create(TaskRequest $request)
     {
-        $task = $this->model->findOrNew(0);
-        Former::populate($task);
+        $task = $this->model->newInstance([]);
 
-        return view('task::admin.task.create', compact('task'));
+        Form::populate($task);
+
+        $this->responseCode = 200;
+        $this->responseMessage = trans('messages.success.loaded', ['Module' => 'Task']);
+        $this->responseData = $task;
+        $this->responseView = view('task::admin.task.create', compact('task'));
+        return $this -> respond($request);
     }
 
     /**
@@ -96,10 +92,23 @@ class TaskAdminController extends AdminController
      */
     public function store(TaskRequest $request)
     {
-        if ($row = $this->model->create($request->all())) {
-            return Response::json(['message' => 'Task created sucessfully', 'type' => 'success', 'title' => 'Success'], 201);
-        } else {
-            return Response::json(['message' => $e->getMessage(), 'type' => 'error', 'title' => 'Error'], 400);
+        try {
+            $attributes = $request->all();
+            $task = $this->model->create($attributes);
+
+            $this->responseCode = 201;
+            $this->responseMessage = trans('messages.success.created', ['Module' => 'Task']);
+            $this->responseData = $task;
+            $this->responseMeta = '';
+            $this->responseRedirect = trans_url('/admin/task/task/'.$task->getRouteKey());
+            $this->responseView = view('task::admin.task.create', compact('task'));
+
+            return $this -> respond($request);
+
+        } catch (Exception $e) {
+            $this->responseCode = 400;
+            $this->responseMessage = $e->getMessage();
+            return $this -> respond($request);
         }
     }
 
@@ -115,7 +124,7 @@ class TaskAdminController extends AdminController
     {
         $task = $this->model->find($id);
 
-        Former::populate($task);
+        Form::populate($task);
 
         return view('task::admin.task.edit', compact('task'));
     }
@@ -128,12 +137,30 @@ class TaskAdminController extends AdminController
      *
      * @return Response
      */
-    public function update(TaskRequest $request, $id)
+    public function update(TaskRequest $request, Task $task)
     {
-        if ($row = $this->model->update($request->all(), $id)) {
-            return Response::json(['message' => 'Task updated sucessfully', 'type' => 'success', 'title' => 'Success'], 201);
-        } else {
-            return Response::json(['message' => $e->getMessage(), 'type' => 'error', 'title' => 'Error'], 400);
+    
+        try {
+            $attributes = $request->all();
+            $attributes['status'] = $request->get('status');
+/*print_r($task);
+dd();*/
+            $task->update($attributes);
+
+            $this->responseCode = 204;
+            $this->responseMessage = trans('messages.success.updated', ['Module' => 'Task']);
+            $this->responseData = $task;
+            $this->responseRedirect = trans_url('/admin/task/task/'.$task->getRouteKey());
+
+            return $this -> respond($request);
+
+        } catch (Exception $e) {
+
+            $this->responseCode = 400;
+            $this->responseMessage = $e->getMessage();
+            $this->responseRedirect = trans_url('/admin/task/task/'.$task->getRouteKey());
+
+            return $this -> respond($request);
         }
     }
 
