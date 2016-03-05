@@ -20,4 +20,10 @@ class Task extends Model
      * @var array
      */
      protected $config = 'package.task.task';
+
+
+ public function user()
+    {
+        return $this->belongsTo(config('auth.providers.users.model'),'user_id');
+    }
 }
