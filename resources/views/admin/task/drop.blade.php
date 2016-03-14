@@ -1,4 +1,4 @@
-<ul class="dropdown-menu">
+<ul class="dropdown-menu notification">
                   <li class="header"> You have {!!count(Task::tasks())!!} Tasks</li>
                   <li>
                     <!-- inner menu: contains the actual data -->
@@ -15,7 +15,7 @@
                                       <small>
                                           <i class="fa fa-clock-o">
                                           </i>
-                                          {!! humanTiming(strtotime(@$value['created_at'])) !!} ago
+                                         <time class="timeago" datetime="{!!@$value['created_at']!!}"></time>
                                       </small>
                                   </h4>
                                   <p>
