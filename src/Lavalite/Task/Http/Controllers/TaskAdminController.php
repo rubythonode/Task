@@ -4,7 +4,7 @@ namespace Lavalite\Task\Http\Controllers;
 
 use App\Http\Controllers\AdminController as AdminController;
 use Form;
-use Lavalite\Task\Http\Requests\TaskRequest;
+use Lavalite\Task\Http\Requests\TaskAdminWebRequest;
 use Lavalite\Task\Interfaces\TaskRepositoryInterface;
 use Lavalite\Task\Models\Task;
 
@@ -31,17 +31,17 @@ class TaskAdminController extends AdminController
      *
      * @return Response
      */
-    public function index(TaskRequest $request)
+    public function index(TaskAdminWebRequest $request)
     {
-        $tasks  = $this->model->setPresenter('\\Lavalite\\Task\\Repositories\\Presenter\\TaskListPresenter')->paginate(NULL, ['*']);
-        $this   ->theme->prependTitle(trans('task::task.names').' :: ');
-        $view   = $this->theme->of('task::admin.task.index',compact('tasks'))->render();
+        $tasks = $this->model->setPresenter('\\Lavalite\\Task\\Repositories\\Presenter\\TaskListPresenter')->paginate(null, ['*']);
+        $this->theme->prependTitle(trans('task::task.names') . ' :: ');
+        $view = $this->theme->of('task::admin.task.index', compact('tasks'))->render();
 
-        $this->responseCode = 200;
-        $this->responseMessage = trans('messages.success.loaded', ['Module' => 'Task']);
-        $this->responseData = $tasks['data'];
-        $this->responseMeta = $tasks['meta'];
-        $this->responseView = $view;
+        $this->responseCode     = 200;
+        $this->responseMessage  = trans('messages.success.loaded', ['Module' => 'Task']);
+        $this->responseData     = $tasks['data'];
+        $this->responseMeta     = $tasks['meta'];
+        $this->responseView     = $view;
         $this->responseRedirect = '';
         return $this->respond($request);
     }
@@ -54,7 +54,7 @@ class TaskAdminController extends AdminController
      *
      * @return Response
      */
-    public function show(TaskRequest $request, $id)
+    public function show(TaskAdminWebRequest $request, $id)
     {
         $task = $this->model->findOrNew($id);
 
@@ -70,17 +70,17 @@ class TaskAdminController extends AdminController
      *
      * @return Response
      */
-    public function create(TaskRequest $request)
+    public function create(TaskAdminWebRequest $request)
     {
         $task = $this->model->newInstance([]);
 
         Form::populate($task);
 
-        $this->responseCode = 200;
+        $this->responseCode    = 200;
         $this->responseMessage = trans('messages.success.loaded', ['Module' => 'Task']);
-        $this->responseData = $task;
-        $this->responseView = view('task::admin.task.create', compact('task'));
-        return $this -> respond($request);
+        $this->responseData    = $task;
+        $this->responseView    = view('task::admin.task.create', compact('task'));
+        return $this->respond($request);
     }
 
     /**
@@ -90,25 +90,25 @@ class TaskAdminController extends AdminController
      *
      * @return Response
      */
-    public function store(TaskRequest $request)
+    public function store(TaskAdminWebRequest $request)
     {
         try {
             $attributes = $request->all();
-            $task = $this->model->create($attributes);
+            $task       = $this->model->create($attributes);
 
-            $this->responseCode = 201;
-            $this->responseMessage = trans('messages.success.created', ['Module' => 'Task']);
-            $this->responseData = $task;
-            $this->responseMeta = '';
-            $this->responseRedirect = trans_url('/admin/task/task/'.$task->getRouteKey());
-            $this->responseView = view('task::admin.task.create', compact('task'));
+            $this->responseCode     = 201;
+            $this->responseMessage  = trans('messages.success.created', ['Module' => 'Task']);
+            $this->responseData     = $task;
+            $this->responseMeta     = '';
+            $this->responseRedirect = trans_url('/admin/task/task/' . $task->getRouteKey());
+            $this->responseView     = view('task::admin.task.create', compact('task'));
 
-            return $this -> respond($request);
+            return $this->respond($request);
 
         } catch (Exception $e) {
-            $this->responseCode = 400;
+            $this->responseCode    = 400;
             $this->responseMessage = $e->getMessage();
-            return $this -> respond($request);
+            return $this->respond($request);
         }
     }
 
@@ -120,7 +120,7 @@ class TaskAdminController extends AdminController
      *
      * @return Response
      */
-    public function edit(TaskRequest $request, $id)
+    public function edit(TaskAdminWebRequest $request, $id)
     {
         $task = $this->model->find($id);
 
@@ -137,30 +137,30 @@ class TaskAdminController extends AdminController
      *
      * @return Response
      */
-    public function update(TaskRequest $request, Task $task)
+    public function update(TaskAdminWebRequest $request, Task $task)
     {
-    
+
         try {
-            $attributes = $request->all();
+            $attributes           = $request->all();
             $attributes['status'] = $request->get('status');
 /*print_r($task);
 dd();*/
             $task->update($attributes);
 
-            $this->responseCode = 204;
-            $this->responseMessage = trans('messages.success.updated', ['Module' => 'Task']);
-            $this->responseData = $task;
-            $this->responseRedirect = trans_url('/admin/task/task/'.$task->getRouteKey());
+            $this->responseCode     = 204;
+            $this->responseMessage  = trans('messages.success.updated', ['Module' => 'Task']);
+            $this->responseData     = $task;
+            $this->responseRedirect = trans_url('/admin/task/task/' . $task->getRouteKey());
 
-            return $this -> respond($request);
+            return $this->respond($request);
 
         } catch (Exception $e) {
 
-            $this->responseCode = 400;
-            $this->responseMessage = $e->getMessage();
-            $this->responseRedirect = trans_url('/admin/task/task/'.$task->getRouteKey());
+            $this->responseCode     = 400;
+            $this->responseMessage  = $e->getMessage();
+            $this->responseRedirect = trans_url('/admin/task/task/' . $task->getRouteKey());
 
-            return $this -> respond($request);
+            return $this->respond($request);
         }
     }
 
@@ -171,12 +171,12 @@ dd();*/
      *
      * @return Response
      */
-    public function destroy(TaskRequest $request, $id)
+    public function destroy(TaskAdminWebRequest $request, $id)
     {
         try {
             $this->model->delete($id);
 
-            return Response::json(['message' => 'Task deleted sucessfully'.$id, 'type' => 'success', 'title' => 'Success'], 201);
+            return Response::json(['message' => 'Task deleted sucessfully' . $id, 'type' => 'success', 'title' => 'Success'], 201);
         } catch (Exception $e) {
             return Response::json(['message' => $e->getMessage(), 'type' => 'error', 'title' => 'Error'], 400);
         }
