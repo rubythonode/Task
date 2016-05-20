@@ -2,9 +2,10 @@
 
 namespace Lavalite\Task\Repositories\Presenter;
 
-use Litepie\Database\Presenter\FractalPresenter;
+use Litepie\Repository\Presenter\FractalPresenter;
 
-class TaskShowPresenter extends FractalPresenter {
+class TaskShowPresenter extends FractalPresenter
+{
 
     /**
      * Prepare data to present

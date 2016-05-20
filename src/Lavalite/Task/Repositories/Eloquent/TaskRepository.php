@@ -3,7 +3,7 @@
 namespace Lavalite\Task\Repositories\Eloquent;
 
 use Lavalite\Task\Interfaces\TaskRepositoryInterface;
-use Litepie\Database\Eloquent\BaseRepository;
+use Litepie\Repository\Eloquent\BaseRepository;
 
 class TaskRepository extends BaseRepository implements TaskRepositoryInterface
 {
@@ -16,23 +16,25 @@ class TaskRepository extends BaseRepository implements TaskRepositoryInterface
     {
         return 'Lavalite\\Task\\Models\\Task';
     }
-       public function getCount()
+
+    public function getCount()
     {
-        return  $this->model->count();
+        return $this->model->count();
     }
-     public function completed()
+
+    public function completed()
     {
-        return  $this->model->whereStatus('completed')->count();
+        return $this->model->whereStatus('completed')->count();
     }
 
     public function tasks()
     {
-        return  $this->model->with('user')->whereStatus('to_do')->orderBy('id','DESC')->get();
+        return $this->model->with('user')->whereStatus('to_do')->orderBy('id', 'DESC')->get();
     }
 
     public function todo()
     {
-        return  $this->model->with('user')->orderBy('id','DESC')->take(6)->get();
+        return $this->model->with('user')->orderBy('id', 'DESC')->take(6)->get();
     }
 
 }

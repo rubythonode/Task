@@ -2,7 +2,7 @@
 
 namespace Lavalite\Task\Http\Controllers;
 
-use App\Http\Controllers\AdminController as AdminController;
+use App\Http\Controllers\AdminWebController as AdminController;
 use Form;
 use Lavalite\Task\Http\Requests\TaskAdminWebRequest;
 use Lavalite\Task\Interfaces\TaskRepositoryInterface;
@@ -11,7 +11,7 @@ use Lavalite\Task\Models\Task;
 /**
  *
  */
-class TaskAdminController extends AdminController
+class TaskAdminWebController extends AdminController
 {
     /**
      * Initialize task controller.
@@ -35,15 +35,8 @@ class TaskAdminController extends AdminController
     {
         $tasks = $this->model->setPresenter('\\Lavalite\\Task\\Repositories\\Presenter\\TaskListPresenter')->paginate(null, ['*']);
         $this->theme->prependTitle(trans('task::task.names') . ' :: ');
-        $view = $this->theme->of('task::admin.task.index', compact('tasks'))->render();
+        return $this->theme->of('task::admin.task.index', compact('tasks'))->render();
 
-        $this->responseCode     = 200;
-        $this->responseMessage  = trans('messages.success.loaded', ['Module' => 'Task']);
-        $this->responseData     = $tasks['data'];
-        $this->responseMeta     = $tasks['meta'];
-        $this->responseView     = $view;
-        $this->responseRedirect = '';
-        return $this->respond($request);
     }
 
     /**
