@@ -40,7 +40,9 @@
                 </div>
                 {!! Form::close() !!}
                 <ul class="sortable-list connectList agile-list ui-sortable" id="to_do">
+                
                     @forelse($tasks['data'] as $key => $value)
+
                     <?php $t_created_at = strtotime( @$value['created_at'] );
                           $t_created_at  = date( 'd.m.Y', @$t_created_at );
                           $t_array=['warning-element','danger-element','info-element','success-element'];
@@ -51,7 +53,6 @@
                             <li class="{!!$t_array[$t_color]!!} to_do" id="{!!@$value['id']!!}"> 
                                 {!!@$value['task']!!}                              
                                 <div class="agile-detail">
-                                    <a href="#" class="pull-right btn btn-xs btn-white">Tag</a>
                                     <i class="fa fa-clock-o"></i> {!!@$value['created_at']!!}
                                 </div>
                             </li>
@@ -74,10 +75,9 @@
                               $p_array=['warning-element','danger-element','info-element','success-element'];
                               $p_color=@$value['id']%4; ?>
                         @if(@$value['status'] == "in_progress")
-                            <li class="{!!$p_array[$p_color]!!} in_progress" id="{!!$value['id']!!}">
+                            <li class="{!!$p_array[$p_color]!!} in_progress" id="{!!@$value['id']!!}">
                                 {!!@$value['task']!!} 
                                 <div class="agile-detail">
-                                    <a href="#" class="pull-right btn btn-xs btn-white">Tag</a>
                                     <i class="fa fa-clock-o"></i> {!!@$value['created_at']!!}
                                 </div>
                             </li>
@@ -103,7 +103,6 @@
                         <li class="{!!$c_array[$c_color]!!} completed" id="{!!@$value['id']!!}">
                             {!!@$value['task']!!} 
                             <div class="agile-detail">
-                                <a href="#" class="pull-right btn btn-xs btn-white">Mark</a>
                                 <i class="fa fa-clock-o"></i> {!!@$value['created_at']!!}
                             </div>
                         </li>
@@ -128,6 +127,7 @@
              $( ".sortable-list" ).on( "sortreceive", function( event, ui ) {
                 var status = $(this).attr('id'); 
                 var id     = ui.item.attr('id');
+                
                 var formURL  = "{{ Trans::to('admin/task/task')}}"+"/"+id;
                 $.ajax( {
                     url: formURL,
@@ -143,8 +143,7 @@
                 });          
             } );
 
-                 $('#create-task')
-                .submit( function( e ) {
+            $('#create-task').submit( function( e ) {
                     if($('#create-task').valid() == false) {
                         toastr.error('Unprocessable entry.', 'Warning');
                         return false;
@@ -164,9 +163,7 @@
                         success:function(data, textStatus, jqXHR)
                         {
                             location.reload();
-                           console.log(data);
-/*                           $('#to_do').prepend('<li class="warning-element to_do" id='+data.id+'><div class="agile-detail"><a href="#" class="pull-right btn btn-xs btn-white">Tag</a><i class="fa fa-clock-o"></i>created</div></li>'); 
-*/                        },
+                        },
                         error: function(jqXHR, textStatus, errorThrown)
                         {
                         }

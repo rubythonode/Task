@@ -20,7 +20,7 @@ class TaskPolicy
      */
     public function view(User $user, Task $task)
     {
-        if ($user->canDo('task.task.view')) {
+        if ($user->canDo('task.task.view') && $user->is('admin')) {
             return true;
         }
 
@@ -50,7 +50,7 @@ class TaskPolicy
      */
     public function update(User $user, Task $task)
     {
-        if ($user->canDo('task.task.update')) {
+        if ($user->canDo('task.task.update') && $user->is('admin')) {
             return true;
         }
 
@@ -67,7 +67,7 @@ class TaskPolicy
      */
     public function destroy(User $user, Task $task)
     {
-        if ($user->canDo('task.task.delete')) {
+        if ($user->canDo('task.task.delete') && $user->is('admin')) {
             return true;
         }
 

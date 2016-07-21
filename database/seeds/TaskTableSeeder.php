@@ -1,8 +1,5 @@
 <?php
 
-namespace Lavalite\Task;
-
-use DB;
 use Illuminate\Database\Seeder;
 
 class TaskTableSeeder extends Seeder
@@ -10,58 +7,121 @@ class TaskTableSeeder extends Seeder
     public function run()
     {
         DB::table('tasks')->insert([
-            // Uncomment  and edit this section for entering value to task table.
-            /*
-            array(
-               "id"        => "Id",
-               "parent_id"        => "Parent id",
-               "user_id"        => "User id",
-               "start"        => "Start",
-               "end"        => "End",
-               "category"        => "Category",
-               "task"        => "Task",
-               "time_required"        => "Time required",
-               "time_taken"        => "Time taken",
-               "proprity"        => "Proprity",
-               "status"        => "Status",
-               "created_by"        => "Created by",
-               "created_at"        => "Created at",
-               "updated_at"        => "Updated at",
-               "deleted_at"        => "Deleted at",
-            ),
-            */
+
+            [
+                'user_id'       => '1',
+                'parent_id'     => null,
+                'start'         => null,
+                'end'           => null,
+                'category'      => null,
+                'task'          => 'testing',
+                'time_required' => null,
+                'time_taken'    => null,
+                'priority'      => null,
+                'status'        => 'completed',
+                'created_by'    => null,
+                'slug'          => 'testing',
+                'upload_folder' => null,
+                'deleted_at'    => null,
+                'created_at'    => '2016-07-19 11:43:26',
+                'updated_at'    => '2016-07-19 11:43:58',
+            ],
+            [
+                'user_id'       => '1',
+                'parent_id'     => null,
+                'start'         => null,
+                'end'           => null,
+                'category'      => null,
+                'task'          => 'developing',
+                'time_required' => null,
+                'time_taken'    => null,
+                'priority'      => null,
+                'status'        => 'to_do',
+                'created_by'    => null,
+                'slug'          => 'developing',
+                'upload_folder' => null,
+                'deleted_at'    => null,
+                'created_at'    => '2016-07-19 11:43:38',
+                'updated_at'    => '2016-07-19 11:43:38',
+            ],
+            [
+                'user_id'       => '1',
+                'parent_id'     => null,
+                'start'         => null,
+                'end'           => null,
+                'category'      => null,
+                'task'          => 'designing',
+                'time_required' => null,
+                'time_taken'    => null,
+                'priority'      => null,
+                'status'        => 'in_progress',
+                'created_by'    => null,
+                'slug'          => 'designing',
+                'upload_folder' => null,
+                'deleted_at'    => null,
+                'created_at'    => '2016-07-19 11:43:53',
+                'updated_at'    => '2016-07-19 11:43:56',
+            ],
+
+        ]);
+
+        DB::table('menus')->insert([
+
+            [
+                'parent_id'   => 1,
+                'key'         => null,
+                'url'         => 'admin/task/task',
+                'name'        => 'Tasks',
+                'description' => null,
+                'icon'        => 'fa fa-flag-o',
+                'target'      => null,
+                'order'       => 1,
+                'status'      => 1,
+            ],
+
+            [
+                'parent_id'   => 2,
+                'key'         => null,
+                'url'         => 'user/task/task',
+                'name'        => 'Tasks',
+                'description' => null,
+                'icon'        => 'icon-notebook',
+                'target'      => null,
+                'order'       => 1,
+                'status'      => 1,
+            ],
 
         ]);
 
         DB::table('permissions')->insert([
             [
-                'name'          => 'task.task.view',
-                'readable_name' => 'View Task',
+                'slug' => 'task.task.view',
+                'name' => 'View Task',
             ],
             [
-                'name'          => 'task.task.create',
-                'readable_name' => 'Create Task',
+                'slug' => 'task.task.create',
+                'name' => 'Create Task',
             ],
             [
-                'name'          => 'task.task.edit',
-                'readable_name' => 'Update Task',
+                'slug' => 'task.task.edit',
+                'name' => 'Update Task',
             ],
             [
-                'name'          => 'task.task.delete',
-                'readable_name' => 'Delete Task',
+                'slug' => 'task.task.delete',
+                'name' => 'Delete Task',
             ],
         ]);
 
         DB::table('settings')->insert([
             // Uncomment  and edit this section for entering value to settings table.
             /*
-            array(
-                'key'      => 'task.task.key',
-                'name'     => 'Some name',
-                'value'    => 'Some value',
-                'type'     => 'Default',
-            ),
-            */
+        [
+        'key'      => 'task.task.key',
+        'name'     => 'Some name',
+        'value'    => 'Some value',
+        'type'     => 'Default',
+        ],
+         */
         ]);
     }
 }

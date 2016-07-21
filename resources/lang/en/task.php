@@ -2,50 +2,65 @@
 
 return [
 
-    'options'  => [
+    /**
+     * Singlular and plural name of the module
+     */
+    'name'          => 'Task',
+    'names'         => 'Tasks',
 
+    /**
+     * Options for select/radio/check.
+     */
+    'options'       => [
+            
     ],
 
-    'placeholder' => [
-
-       'id'            => 'Enter Id',
-'parent_id'            => 'Enter Parent id',
-'user_id'              => 'Enter User id',
-'start'                => 'Enter Start',
-'end'                  => 'Enter End',
-'category'             => 'Enter Category',
-'task'                 => 'Enter Task',
-'time_required'        => 'Enter Time required',
-'time_taken'           => 'Enter Time taken',
-'proprity'             => 'Enter Proprity',
-'status'               => 'Enter Status',
-'created_by'           => 'Enter Created by',
-'created_at'           => 'Enter Created at',
-'updated_at'           => 'Enter Updated at',
-'deleted_at'           => 'Enter Deleted at',
-
+    /**
+     * Placeholder for inputs
+     */
+    'placeholder'   => [
+        'parent_id'                  => 'Please enter parent_id',
+        'start'                      => 'Please enter start',
+        'end'                        => 'Please enter end',
+        'category'                   => 'Please enter category',
+        'task'                       => 'Please enter task',
+        'time_required'              => 'Please enter time_required',
+        'time_taken'                 => 'Please enter time_taken',
+        'priority'                   => 'Please enter priority',
+        'status'                     => 'Please enter status',
+        'created_by'                 => 'Please enter created_by',
     ],
 
-    'label' => [
-
-        'id'           => 'Id',
-'parent_id'            => 'Parent id',
-'user_id'              => 'User id',
-'start'                => 'Start',
-'end'                  => 'End',
-'category'             => 'Category',
-'task'                 => 'Task',
-'time_required'        => 'Time required',
-'time_taken'           => 'Time taken',
-'proprity'             => 'Proprity',
-'status'               => 'Status',
-'created_by'           => 'Created by',
-'created_at'           => 'Created at',
-'updated_at'           => 'Updated at',
-'deleted_at'           => 'Deleted at',
+    /**
+     * Labels for inputs.
+     */
+    'label'         => [
+        'parent_id'                  => 'Parent id',
+        'start'                      => 'Start',
+        'end'                        => 'End',
+        'category'                   => 'Category',
+        'task'                       => 'Task',
+        'time_required'              => 'Time required',
+        'time_taken'                 => 'Time taken',
+        'priority'                   => 'Priority',
+        'status'                     => 'Status',
+        'created_by'                 => 'Created by',
+        'status'                     => 'Status',
+        'created_at'                 => 'Created at',
+        'updated_at'                 => 'Updated at',
     ],
 
-    'name'            => 'Task',
-    'names'           => 'Tasks',
+    /**
+     * Tab labels
+     */
+    'tab'           => [
+        'name'  => 'Name',
+    ],
 
+    /**
+     * Texts  for the module
+     */
+    'text'          => [
+        'preview' => 'Click on the below list for preview',
+    ],
 ];

@@ -1,10 +1,11 @@
 {
     "name": "lavalite/task",
-    "description": "Task management package for Lavalite framework",
+    "description": "Task package for lavalite.",
+    "keywords": ["lavalite", "Task"],
     "license": "MIT",
     "authors": [
         {
-            "name": "Lava Lite",
+            "name": "Lavalite",
             "email": "info@lavalite.org"
         }
     ],

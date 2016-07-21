@@ -13,6 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
+        // Bind Task policy
         \Lavalite\Task\Models\Task::class => \Lavalite\Task\Policies\TaskPolicy::class,
     ];
 

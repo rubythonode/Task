@@ -4,8 +4,7 @@ namespace Lavalite\Task\Repositories\Presenter;
 
 use Litepie\Repository\Presenter\FractalPresenter;
 
-class TaskListPresenter extends FractalPresenter
-{
+class TaskListPresenter extends FractalPresenter {
 
     /**
      * Prepare data to present
