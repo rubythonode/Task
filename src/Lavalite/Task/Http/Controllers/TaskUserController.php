@@ -49,6 +49,8 @@ class TaskUserController extends BaseController
      */
     public function index(TaskUserRequest $request)
     {
+        $this->theme->asset()->container('footer')->add('jquery-ui', 'packages/jquery-ui/jquery-ui.js');
+
         $tasks  = $this->repository
                 ->pushCriteria(new \Lavalite\Task\Repositories\Criteria\TaskUserCriteria())
                 ->setPresenter('\\Lavalite\\Task\\Repositories\\Presenter\\TaskListPresenter')

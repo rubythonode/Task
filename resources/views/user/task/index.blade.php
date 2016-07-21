@@ -5,10 +5,10 @@
             <div class="row">
                 <div class="col-sm-6 col-md-6">
                     <h3 class="panel-title">
-                        My <span>Tasks</span>
+                       {!!Trans('task::task.user_names')!!}
                     </h3>
                     <p class="panel-sub-title m-t-5 text-muted">
-                        Sub title goes here with small font
+                        {!!Trans('task::task.create')!!}
                     </p>
                 </div>
             </div>

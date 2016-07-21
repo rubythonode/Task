@@ -40,7 +40,8 @@ Language
 
 Views public and admin
 
-    php artisan vendor:publish --provider="Lavalite\Task\Providers\TaskServiceProvider" --tag="view"
+    php artisan vendor:publish --provider="Lavalite\Task\Providers\TaskServiceProvider" --tag="view-public"
+    php artisan vendor:publish --provider="Lavalite\Task\Providers\TaskServiceProvider" --tag="view-admin"
 
 Publish admin views only if it is necessary.
 

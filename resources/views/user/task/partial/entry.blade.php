@@ -1,4 +1,5 @@
-<div class='col-md-4 col-sm-6'>
+                {!! Form::hidden('upload_folder')!!}
+                <div class='col-md-4 col-sm-6'>
                        {!! Form::text('parent_id')
                        -> label(trans('task::task.label.parent_id'))
                        -> placeholder(trans('task::task.placeholder.parent_id'))!!}
