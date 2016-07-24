@@ -75,7 +75,7 @@ class TaskTableSeeder extends Seeder
                 'description' => null,
                 'icon'        => 'fa fa-flag-o',
                 'target'      => null,
-                'order'       => 1,
+                'order'       => 220,
                 'status'      => 1,
             ],
 
@@ -87,7 +87,7 @@ class TaskTableSeeder extends Seeder
                 'description' => null,
                 'icon'        => 'icon-notebook',
                 'target'      => null,
-                'order'       => 1,
+                'order'       => 220,
                 'status'      => 1,
             ],
 
