@@ -27,9 +27,9 @@ return [
         'slugs'         => ['slug' => 'task'],
         'dates'         => ['deleted_at'],
         'appends'       => [],
-        'fillable'      => ['user_id', 'parent_id', 'start', 'end', 'category', 'task', 'time_required', 'time_taken', 'priority', 'status', 'upload_folder', 'created_by'],
+        'fillable'      => ['user_id', 'user_type', 'parent_id', 'start', 'end', 'category', 'task', 'time_required', 'time_taken', 'priority', 'status', 'upload_folder', 'created_by'],
 
-        'upload-folder' => '/uploads/task/task',
+        'upload_folder' => '/task/task',
         'uploads'       => [
             'single'   => [],
             'multiple' => [],

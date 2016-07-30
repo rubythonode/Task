@@ -40,25 +40,25 @@
                 </div>
                 {!! Form::close() !!}
                 <ul class="sortable-list connectList agile-list ui-sortable" id="to_do">
-                
+
                     @forelse($tasks['data'] as $key => $value)
 
-                    <?php $t_created_at = strtotime( @$value['created_at'] );
-                          $t_created_at  = date( 'd.m.Y', @$t_created_at );
-                          $t_array=['warning-element','danger-element','info-element','success-element'];
-                          $t_color=@$value['id']%4;
+                    <?php
+
+                        $t_array = ['warning-element', 'danger-element', 'info-element', 'success-element'];
+                        $t_color = @$value['id'] % 4;
                     ?>
 
                         @if(@$value['status'] == "to_do")
-                            <li class="{!!$t_array[$t_color]!!} to_do" id="{!!@$value['id']!!}"> 
-                                {!!@$value['task']!!}                              
+                            <li class="{!!$t_array[$t_color]!!} to_do" id="{!!@$value['id']!!}">
+                                {!!@$value['task']!!}
                                 <div class="agile-detail">
-                                    <i class="fa fa-clock-o"></i> {!!@$value['created_at']!!}
+                                    <i class="fa fa-clock-o"></i> {!! format_date(@$value['created_at']) !!}
                                 </div>
                             </li>
                         @endif
                     @empty
-                    @endif                    
+                    @endif
                 </ul>
             </div>
         </div>
@@ -70,20 +70,20 @@
                 <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
                 <ul class="sortable-list connectList agile-list ui-sortable" id="in_progress">
                     @forelse($tasks['data'] as $key => $value)
-                        <?php $p_created_at = strtotime( @$value['created_at'] );
-                              $p_created_at  = date( 'd.m.Y', @$p_created_at );
-                              $p_array=['warning-element','danger-element','info-element','success-element'];
-                              $p_color=@$value['id']%4; ?>
+                        <?php
+
+                            $p_array = ['warning-element', 'danger-element', 'info-element', 'success-element'];
+                        $p_color = @$value['id'] % 4;?>
                         @if(@$value['status'] == "in_progress")
                             <li class="{!!$p_array[$p_color]!!} in_progress" id="{!!@$value['id']!!}">
-                                {!!@$value['task']!!} 
+                                {!!@$value['task']!!}
                                 <div class="agile-detail">
-                                    <i class="fa fa-clock-o"></i> {!!@$value['created_at']!!}
+                                    <i class="fa fa-clock-o"></i> {!! format_date(@$value['created_at']) !!}
                                 </div>
                             </li>
                          @endif
                     @empty
-                    @endif                     
+                    @endif
                 </ul>
             </div>
         </div>
@@ -95,20 +95,20 @@
                 <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
                 <ul class="sortable-list connectList agile-list ui-sortable" id="completed">
                 @forelse($tasks['data'] as $key => $value)
-                    <?php $c_created_at = strtotime( @$value['created_at'] );
-                          $c_created_at  = date( 'd.m.Y', @$c_created_at ); 
-                          $c_array=['warning-element','danger-element','info-element','success-element'];
-                          $c_color=@$value['id']%4; ?>
+                    <?php
+
+                        $c_array = ['warning-element', 'danger-element', 'info-element', 'success-element'];
+                    $c_color = @$value['id'] % 4;?>
                     @if(@$value['status'] == "completed")
                         <li class="{!!$c_array[$c_color]!!} completed" id="{!!@$value['id']!!}">
-                            {!!@$value['task']!!} 
+                            {!!@$value['task']!!}
                             <div class="agile-detail">
-                                <i class="fa fa-clock-o"></i> {!!@$value['created_at']!!}
+                                <i class="fa fa-clock-o"></i> {!! format_date(@$value['created_at']) !!}
                             </div>
                         </li>
                      @endif
                 @empty
-                @endif                     
+                @endif
                 </ul>
             </div>
         </div>
@@ -121,18 +121,18 @@
     <script>
         $(document).ready(function(){
             $(".sortable-list").sortable({
-                connectWith: ".connectList" 
+                connectWith: ".connectList"
             }).disableSelection();
 
              $( ".sortable-list" ).on( "sortreceive", function( event, ui ) {
-                var status = $(this).attr('id'); 
+                var status = $(this).attr('id');
                 var id     = ui.item.attr('id');
-                
+
                 var formURL  = "{{ Trans::to('admin/task/task')}}"+"/"+id;
                 $.ajax( {
                     url: formURL,
                     type: 'PUT',
-                    data: {'status': status},                 
+                    data: {'status': status},
                     success:function(data, textStatus, jqXHR)
                     {
                         console.log(data);
@@ -140,7 +140,7 @@
                     error: function(jqXHR, textStatus, errorThrown)
                     {
                     }
-                });          
+                });
             } );
 
             $('#create-task').submit( function( e ) {
@@ -171,7 +171,7 @@
                     e.preventDefault();
                 });
         });
-      
+
 
     </script>
 @stop

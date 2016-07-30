@@ -10,6 +10,7 @@ class TaskTableSeeder extends Seeder
 
             [
                 'user_id'       => '1',
+                'user_type'     => 'App\\User',
                 'parent_id'     => null,
                 'start'         => null,
                 'end'           => null,
@@ -28,6 +29,7 @@ class TaskTableSeeder extends Seeder
             ],
             [
                 'user_id'       => '1',
+                'user_type'     => 'App\\User',
                 'parent_id'     => null,
                 'start'         => null,
                 'end'           => null,
@@ -46,6 +48,7 @@ class TaskTableSeeder extends Seeder
             ],
             [
                 'user_id'       => '1',
+                'user_type'     => 'App\\User',
                 'parent_id'     => null,
                 'start'         => null,
                 'end'           => null,

@@ -3,23 +3,22 @@
   <li>
     <!-- inner menu: contains the actual data -->
     <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 200px;"><ul class="menu" style="overflow: hidden; width: 100%; height: 200px;">
-     
+
        @forelse(Task::tasks() as $key => $value)
           <li>
               <a href="{!!URL::to('/admin/task/task')!!}">
                   <div class="pull-left">
-                      <img src="https://placeimg.com/80/80/people" class="img-circle img-responsive" alt="User Image" />
+                      <img src="{!!@$value->user->picture!!}" class="img-circle img-responsive" alt="User Image" />
                   </div>
                   <h4>
                       {!!@$value->task!!}
                       <small>
                           <i class="fa fa-clock-o">
                           </i>
-                         <time class="timeago" datetime="{!!@$value['created_at']!!}"></time>
+                         <time class="timeago" datetime="{!! format_date($value->created_at) !!}"></time>
                       </small>
                   </h4>
-                  <p>
-                      {!!date('Y-m-d',strtotime(@$value['start']))!!} - {!!date('Y-m-d',strtotime(@$value['end']))!!}
+                  <p>{!! format_date($value->start) !!}-{!! format_date($value->end) !!}
                   </p>
               </a>
           </li>

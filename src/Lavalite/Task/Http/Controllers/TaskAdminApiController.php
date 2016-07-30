@@ -97,6 +97,7 @@ class TaskAdminApiController extends BaseController
         try {
             $attributes             = $request->all();
             $attributes['user_id']  = user_id('admin.api');
+            $attributes['user_type'] = user_type();
             $task          = $this->repository->create($attributes);
             $task          = $task->presenter();
             $task['code']  = 2004;

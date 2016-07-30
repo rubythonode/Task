@@ -107,6 +107,7 @@ class TaskAdminController extends BaseController
         try {
             $attributes             = $request->all();
             $attributes['user_id']  = user_id('admin.web');
+            $attributes['user_type'] = user_type();
             $task          = $this->repository->create($attributes);
 
             return response()->json([

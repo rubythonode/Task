@@ -30,7 +30,7 @@
                             <input type="hidden" name="status" value="to_do" placeholder="Add new task." class="input input-sm form-control">
                             <input type="text" name="task" placeholder="Add new task." class="input form-control" required="required">
                             <span class="input-group-btn">
-                               
+
                                 <button type="submit" class="btn btn-danger">Add task</button>
 
                             </span>
@@ -39,15 +39,15 @@
                         <ul class="sortable-list connectList agile-list ui-sortable" id="to_do">
                             @forelse($tasks['data'] as $key => $value)
                                 @if(@$value['status'] == "to_do")
-                                    <li class="to_do" id="{!!@$value['id']!!}"> 
-                                        {!!@$value['task']!!}                              
+                                    <li class="to_do" id="{!!@$value['id']!!}">
+                                        {!!@$value['task']!!}
                                         <div class="agile-detail">
-                                            <i class="fa fa-clock-o"></i> {!! @$value['created_at'] !!}
+                                            <i class="fa fa-clock-o"></i> {!! format_date(@$value['created_at']) !!}
                                         </div>
                                     </li>
                                 @endif
                             @empty
-                            @endif                    
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -61,14 +61,14 @@
                             @forelse($tasks['data'] as $key => $value)
                                 @if(@$value['status'] == "in_progress")
                                     <li class="in_progress" id="{!!@$value['id']!!}">
-                                        {!!@$value['task']!!} 
+                                        {!!@$value['task']!!}
                                         <div class="agile-detail">
-                                            <i class="fa fa-clock-o"></i> {!!@$value['created_at'] !!}
+                                            <i class="fa fa-clock-o"></i> {!! format_date(@$value['created_at']) !!}
                                         </div>
                                     </li>
                                  @endif
                             @empty
-                            @endif                     
+                            @endif
                         </ul>
                     </div>
                 </div>
@@ -82,14 +82,14 @@
                         @forelse($tasks['data'] as $key => $value)
                             @if(@$value['status'] == "completed")
                                 <li class="completed" id="{!!@$value['id']!!}">
-                                    {!!@$value['task']!!} 
+                                    {!!@$value['task']!!}
                                     <div class="agile-detail">
-                                        <i class="fa fa-clock-o"></i> {!! @$value['created_at'] !!}
+                                        <i class="fa fa-clock-o"></i> {!! format_date(@$value['created_at']) !!}
                                     </div>
                                 </li>
                              @endif
                         @empty
-                        @endif                     
+                        @endif
                         </ul>
                     </div>
                 </div>
@@ -101,18 +101,18 @@
 <script>
     $(document).ready(function(){
         $(".sortable-list").sortable({
-            connectWith: ".connectList" 
+            connectWith: ".connectList"
         }).disableSelection();
 
          $( ".sortable-list" ).on( "sortreceive", function( event, ui ) {
-            var status = $(this).attr('id'); 
+            var status = $(this).attr('id');
             var id     = ui.item.attr('id');
-            
+
             var formURL  = "{{ Trans::to('user/task/task')}}"+"/"+id;
             $.ajax( {
                 url: formURL,
                 type: 'PUT',
-                data: {'status': status},                 
+                data: {'status': status},
                 success:function(data, textStatus, jqXHR)
                 {
                     console.log(data);
@@ -120,7 +120,7 @@
                 error: function(jqXHR, textStatus, errorThrown)
                 {
                 }
-            });          
+            });
         } );
 
         $('#create-task').submit( function( e ) {
@@ -151,6 +151,6 @@
                 e.preventDefault();
             });
     });
-  
+
 
 </script>
