@@ -2,7 +2,7 @@
 <div class="media discussion-widget-block">
       <div class="media-left media-middle">
             <a href="#">
-                <img class="media-object img-circle" src="{!! url($value->user->picture) !!}">
+                <img class="media-object img-circle img-responsive" src="{!! url($value->user->picture) !!}">
             </a>
       </div>
       <div class="media-body">
